@@ -29,7 +29,7 @@ public class CameraControls : MonoBehaviour
     float GetMouseBorderX()
     {
         Vector3 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        Debug.Log(mousePos);
+        //Debug.Log(mousePos);
         if (mousePos.x <= 0.1f)
         {
             return -1f;
