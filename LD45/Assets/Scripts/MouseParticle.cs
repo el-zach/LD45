@@ -17,6 +17,8 @@ public class MouseParticle : MonoBehaviour
     public float baseHeigth = 0.1f;
 
     Vector2 lastMousePosition=Vector2.zero;
+    public Transform mousePos;
+
     private void Start()
     {
         plane = new Plane(Vector3.up, currentHeigth+baseHeigth);
@@ -33,6 +35,7 @@ public class MouseParticle : MonoBehaviour
             if (timer >= cooldown)
             {
                 Vector3 pos = GetMouseWorld();
+                if (mousePos) mousePos.position = pos;
                 DoEmit(pos);
                 timer = 0f;
             }
