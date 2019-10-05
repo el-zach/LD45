@@ -13,15 +13,21 @@ public class MouseParticle : MonoBehaviour
     public float cooldown = 0.1f;
     float timer = 0f;
 
+    public float currentHeigth = 0f;
+    public float baseHeigth = 0.1f;
+
+    Vector2 lastMousePosition=Vector2.zero;
     private void Start()
     {
-        plane = new Plane(Vector3.up, 0.1f);
+        plane = new Plane(Vector3.up, currentHeigth+baseHeigth);
     }
 
     private void Update()
     {
+        float mouseDelta = Vector2.Distance(Input.mousePosition, lastMousePosition);
+        lastMousePosition = Input.mousePosition;
         if (timer < cooldown) timer += Time.deltaTime;
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && mouseDelta>0f)
         {
             lightPower = Mathf.Lerp(lightPower, 1f, Time.deltaTime * lightChange.x);
             if (timer >= cooldown)
