@@ -8,8 +8,8 @@ public class Movement : MonoBehaviour
     public Rigidbody rigid;
     [Header("Stats")]
     public float acceleration=1f;
-    public float maxSpeed=1f;
     public float velocityDamping = 0.95f;
+    //public float gravity = 9.81f;
     [Header("Runtime")]
     public Vector2 input;
     Vector3 acc=Vector3.zero;
@@ -24,7 +24,8 @@ public class Movement : MonoBehaviour
     {
         acc = new Vector3(input.x * acceleration * Time.deltaTime, 0f, input.y * acceleration * Time.deltaTime);
         vel += acc;
-        rigid.MovePosition(rigid.position + new Vector3(vel.x, 0f, vel.z));
+        //vel += Vector3.down * gravity*Time.deltaTime;
+        rigid.MovePosition(rigid.position + new Vector3(vel.x, vel.y, vel.z));
 
         vel *= velocityDamping;
         if (vel.sqrMagnitude <= 0.001f)
