@@ -12,8 +12,8 @@ public class Movement : MonoBehaviour
     public float velocityDamping = 0.95f;
     [Header("Runtime")]
     public Vector2 input;
-    Vector3 acc;
-    Vector3 vel;
+    Vector3 acc=Vector3.zero;
+    Vector3 vel=Vector3.zero;
 
     private void Start()
     {
