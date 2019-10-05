@@ -5,7 +5,10 @@ using UnityEngine;
 public class MouseParticle : MonoBehaviour
 {
     public ParticleSystem pSys;
-
+    public LightParticles lightSys;
+    [Range(0f,2f)]
+    public float lightPower = 0f;
+    public Vector2 lightChange = Vector2.one;
     Plane plane;
     public float cooldown = 0.1f;
     float timer = 0f;
@@ -18,16 +21,21 @@ public class MouseParticle : MonoBehaviour
     private void Update()
     {
         if (timer < cooldown) timer += Time.deltaTime;
-
-        if (timer >= cooldown)
+        if (Input.GetMouseButton(0))
         {
-            if (Input.GetMouseButton(0))
+            lightPower = Mathf.Lerp(lightPower, 1f, Time.deltaTime * lightChange.x);
+            if (timer >= cooldown)
             {
                 Vector3 pos = GetMouseWorld();
                 DoEmit(pos);
                 timer = 0f;
             }
         }
+        else
+        {
+            lightPower = Mathf.Lerp(lightPower, 0f, Time.deltaTime * lightChange.y);
+        }
+        lightSys.intensityMultiplier = lightPower;
     }
 
     void DoEmit(Vector3 pos)

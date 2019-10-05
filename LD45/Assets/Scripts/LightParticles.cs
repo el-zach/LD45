@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class LightParticles : MonoBehaviour
 {
+    [Range(0f,2f)]
+    public float intensityMultiplier = 1f;
     public Light leadLight, centerLight;
+    public float intensityLead, intensityCenter;
     public ParticleSystem pSys;
     public ParticleSystem.Particle[] pBuffer;
 
@@ -12,19 +15,14 @@ public class LightParticles : MonoBehaviour
     void Start()
     {
         pBuffer = new ParticleSystem.Particle[pSys.main.maxParticles];
+        intensityLead = leadLight.intensity;
+        intensityCenter = centerLight.intensity;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //ParticleSystem.Particle[] particles = new ParticleSystem.Particle[pSys.particleCount];
-        //pSys.GetParticles(particles);
-        //if (pSys.particleCount > 1)
-        //{
-        //    ParticleSystem.Particle[] tailLightP = new ParticleSystem.Particle[1];
-        //    pSys.GetParticles(tailLightP, 1, 0);
-        //    tailLight.transform.position = new Vector3(tailLightP[0].position.x,tailLight.transform.position.y,tailLightP[0].position.z);
-        //}
+
         if (pSys.particleCount > 1)
         {
             int activeCount = pSys.GetParticles(pBuffer);
@@ -55,10 +53,11 @@ public class LightParticles : MonoBehaviour
             centerLight.transform.position = new Vector3(pos.x, centerLight.transform.position.y, pos.y);
             //move taillight to oldest
             //tailLight.transform.position = new Vector3(pBuffer[oldest].position.x, tailLight.transform.position.y, pBuffer[oldest].position.z);
-            //move leadlight to [0]
             leadLight.transform.position = new Vector3(pBuffer[youngest].position.x, centerLight.transform.position.y, pBuffer[youngest].position.z);
-
         }
+
+        centerLight.intensity = intensityMultiplier * intensityCenter;
+        leadLight.intensity = intensityMultiplier * intensityLead;
 
     }
 }

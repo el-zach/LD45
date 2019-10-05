@@ -5453,6 +5453,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pSys: {fileID: 1106610087}
+  lightSys: {fileID: 1106610090}
+  lightPower: 0
+  lightChange: {x: 3, y: 3}
   cooldown: 0.03
 --- !u!114 &1106610090
 MonoBehaviour:
@@ -5466,8 +5469,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfccb81e4211a854591742eeeebf6aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  intensityMultiplier: 1
   leadLight: {fileID: 2028929055}
   centerLight: {fileID: 1361255624}
+  intensityLead: 0
+  intensityCenter: 0
   pSys: {fileID: 1106610087}
 --- !u!1 &1126831592
 GameObject:
