@@ -1,0 +1,36 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Movement : MonoBehaviour
+{
+    [Header("Setup")]
+    public Rigidbody rigid;
+    [Header("Stats")]
+    public float acceleration=1f;
+    public float maxSpeed=1f;
+    public float velocityDamping = 0.95f;
+    [Header("Runtime")]
+    public Vector2 input;
+    Vector3 acc;
+    Vector3 vel;
+
+    private void Start()
+    {
+        if (!rigid) GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        acc = new Vector3(input.x * acceleration * Time.deltaTime, 0f, input.y * acceleration * Time.deltaTime);
+        vel += acc;
+        rigid.MovePosition(rigid.position + new Vector3(vel.x, 0f, vel.z));
+
+        vel *= velocityDamping;
+        if (vel.sqrMagnitude <= 0.001f)
+            vel = Vector3.zero;
+        input = Vector2.zero;
+        acc = Vector3.zero;
+    }
+
+}
