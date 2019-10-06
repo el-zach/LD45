@@ -88,6 +88,8 @@ GameObject:
   - component: {fileID: 6389941293785555533}
   - component: {fileID: 6920057545967265650}
   - component: {fileID: 4122469896451853222}
+  - component: {fileID: 3543008658155509504}
+  - component: {fileID: 7173241075093837320}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -163,6 +165,60 @@ MonoBehaviour:
   slowDownDistance: 3
   stoppingDistance: 0.3
   maxDistance: 10
+--- !u!114 &3543008658155509504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2659525907688919678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d1b2fc5be73324ca8ee7bedf63b480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageRange: 1.65
+  damageForward: 2
+  animator: {fileID: 1087689368494085132}
+--- !u!135 &7173241075093837320
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2659525907688919678}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.49
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6728878566808487837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6325698951807585125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c674c2d4abcd4bc4aba4a77f0cee3606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3543008658155509504}
+        m_MethodName: KillSurrounding
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &2659525907785585260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -327,9 +383,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 737068ba2a6ac3b4ba731de9f33c83da, type: 3}
+--- !u!1 &6325698951807585125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 737068ba2a6ac3b4ba731de9f33c83da,
+    type: 3}
+  m_PrefabInstance: {fileID: 2659525907785585260}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7030748447613106550 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 737068ba2a6ac3b4ba731de9f33c83da,
+    type: 3}
+  m_PrefabInstance: {fileID: 2659525907785585260}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1087689368494085132 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 737068ba2a6ac3b4ba731de9f33c83da,
     type: 3}
   m_PrefabInstance: {fileID: 2659525907785585260}
   m_PrefabAsset: {fileID: 0}
