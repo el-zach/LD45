@@ -5,15 +5,20 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     public Animator animator;
-    Rigidbody rigid;
+
     private void Start()
     {
-        rigid = GetComponent<Rigidbody>();
+        GetComponent<Movement>().OnInput.AddListener(SetSpeedValue);
     }
 
     private void Update()
     {
-        animator.SetFloat("speed", rigid.velocity.magnitude);
+        
+    }
+
+    void SetSpeedValue(Vector2 _in)
+    {
+        animator.SetFloat("speed", _in.magnitude);
     }
 
 }

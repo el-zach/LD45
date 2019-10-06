@@ -14,6 +14,6 @@ public class DirectPlayerControl : MonoBehaviour
     private void Update()
     {
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        move.input = input;
+        move.SetInput(input);
     }
 }

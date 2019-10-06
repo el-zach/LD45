@@ -15,6 +15,7 @@ public class Follower : MonoBehaviour
     public bool debug = false;
     Movement move;
     public float slowDownDistance = 3f;
+    public float stoppingDistance = 0.3f;
     public float maxDistance = 10f;
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,7 @@ public class Follower : MonoBehaviour
             LightRating rating = new LightRating();
             rating.light = light;
             rating.worldDirection = light.transform.position - transform.position;
+            rating.worldDirection.y = 0f;
             rating.distance = rating.worldDirection.magnitude;
             rating.score = (light.intensity > 0.05f ? light.intensity : 0f) * light.range * (maxDistance - rating.distance);
             if(rating.score > topScore)
@@ -52,9 +54,7 @@ public class Follower : MonoBehaviour
             if (CheckLightRange(topLight.light))
             {
                 if(debug)Debug.Log("Toplight: Intensity:" + topLight.light.intensity + "; Range: " + topLight.light.range + "; Distance: " + topLight.distance+"; score: "+topLight.score);
-                Vector2 dir = new Vector2(topLight.worldDirection.x, topLight.worldDirection.z).normalized;
-                dir *= Mathf.Clamp01(topLight.distance / slowDownDistance);
-                move.input = dir;
+                MoveInDirection(topLight);
             }
         }
     }
@@ -62,6 +62,13 @@ public class Follower : MonoBehaviour
     bool CheckLightRange(Light light)
     {
         return true;
+    }
+
+    void MoveInDirection(LightRating light)
+    {
+        Vector2 dir = new Vector2(light.worldDirection.x, light.worldDirection.z).normalized;
+        dir *= Mathf.Clamp01(light.distance / slowDownDistance - stoppingDistance);
+        move.SetInput(dir);
     }
 
     //Vector2 TargetDirection(Vector3 _targetPos)
