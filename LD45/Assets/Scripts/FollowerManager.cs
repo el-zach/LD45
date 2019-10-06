@@ -5,7 +5,7 @@ using UnityEngine;
 public class FollowerManager : MonoBehaviour
 {
     public static FollowerManager Instance;
-    public static List<Light> allLights = new List<Light>();
+    public static List<Attraction> allLights = new List<Attraction>();
 
     private void Awake()
     {
@@ -18,8 +18,8 @@ public class FollowerManager : MonoBehaviour
     void Start()
     {
         allLights.Clear();
-        Light[] allLightsAtStart = FindObjectsOfType<Light>();
-        foreach (Light light in allLightsAtStart)
+        Attraction[] allLightsAtStart = FindObjectsOfType<Attraction>();
+        foreach (Attraction light in allLightsAtStart)
             allLights.Add(light);
     }
 

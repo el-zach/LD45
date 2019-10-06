@@ -10,7 +10,8 @@ public class CameraControls : MonoBehaviour
     Vector3 startZoomOffset;
 
     [Header("Stats")]
-    public float speed = 1f;
+    public float borderSpeed = 6f;
+    public float rightClickSpeed = 20f;
     public float zoomStep = 0.2f;
     public float zoomSpeed = 2f;
     public bool invertZoom = true;
@@ -20,6 +21,7 @@ public class CameraControls : MonoBehaviour
 
     public Bounds bounds;
 
+    Vector3 lastMousePos;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,11 +33,23 @@ public class CameraControls : MonoBehaviour
     {
         Vector3 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
         Vector3 mov = Vector3.zero;
-        mov += Camera.main.transform.right * GetMouseBorderX(mousePos) * speed * Time.deltaTime;
+
         Vector3 forward = Camera.main.transform.forward;
         forward.y = 0f;
         forward = forward.normalized;
-        mov += forward * GetMouseBorderY(mousePos) * speed * Time.deltaTime;
+
+        if (!Input.GetMouseButton(1))
+        {
+            mov += Camera.main.transform.right * GetMouseBorderX(mousePos) * borderSpeed * Time.deltaTime;
+            mov += forward * GetMouseBorderY(mousePos) * borderSpeed * Time.deltaTime;
+        }
+        else
+        {
+            Vector3 mouseDelta = mousePos - lastMousePos;
+            mov += Camera.main.transform.right * mouseDelta.x * rightClickSpeed * Time.deltaTime;
+            mov += forward * mouseDelta.y * rightClickSpeed * Time.deltaTime;
+        }
+
         if(bounds.Contains(controlledTarget.position+mov))
             controlledTarget.Translate(mov);
 
@@ -44,6 +58,8 @@ public class CameraControls : MonoBehaviour
             ChangeZoom(Input.mouseScrollDelta.y * zoomStep * (invertZoom ? -1f : 1f));
         }
         if (!Mathf.Approximately(currentZoom, targetZoom)) DoZoom();
+
+        lastMousePos = mousePos;
     }
 
     float GetMouseBorderX(Vector3 mousePos)

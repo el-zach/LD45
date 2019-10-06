@@ -28,17 +28,17 @@ public class Follower : MonoBehaviour
     {
         float topScore = FollowerManager.Instance.minScore;
         LightRating topLight = null;
-        foreach(Light light in FollowerManager.allLights)
+        foreach(Attraction attraction in FollowerManager.allLights)
         {
             //get best Light 
             // -> good light is close and bright
 
             LightRating rating = new LightRating();
-            rating.light = light;
-            rating.worldDirection = light.transform.position - transform.position;
+            rating.light = attraction.syncTarget;
+            rating.worldDirection = attraction.transform.position - transform.position;
             rating.worldDirection.y = 0f;
             rating.distance = rating.worldDirection.magnitude;
-            rating.score = (light.intensity > 0.05f ? light.intensity : 0f) * light.range * (maxDistance - rating.distance);
+            rating.score = (attraction.power > 0.05f ? attraction.power : 0f) * attraction.range * (maxDistance - rating.distance) * attraction.multiplier;
             if(rating.score > topScore)
             {
                 topScore = rating.score;
