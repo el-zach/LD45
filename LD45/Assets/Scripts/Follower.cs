@@ -28,6 +28,7 @@ public class Follower : MonoBehaviour
     void Start()
     {
         move = GetComponent<Movement>();
+        move.speed *= Random.Range(0.9f, 1.1f);
     }
 
     // Update is called once per frame

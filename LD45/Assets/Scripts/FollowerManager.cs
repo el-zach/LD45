@@ -11,6 +11,7 @@ public class FollowerManager : MonoBehaviour
     public List<GameObject> savedClones = new List<GameObject>();
 
     public int followerCount;
+    Exit exit;
 
     public UnityEngine.Events.UnityEvent OnNoMoreFollowers;
 
@@ -71,7 +72,9 @@ public class FollowerManager : MonoBehaviour
     public void ReduceFollowers()
     {
         followerCount--;
-        if (followerCount == 0)
+        if (!exit) exit = FindObjectOfType<Exit>();
+
+        if (followerCount <= exit.followersToBeReady)
             OnNoMoreFollowers.Invoke();
     }
 
