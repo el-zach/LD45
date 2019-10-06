@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 1129962022049265140}
   - component: {fileID: 1129962022049265139}
   - component: {fileID: 1129962022049265142}
+  - component: {fileID: 3948066277335015730}
   - component: {fileID: 1129962022049265138}
   m_Layer: 0
   m_Name: Follower
@@ -158,6 +159,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2620771142340861428}
+--- !u!114 &3948066277335015730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129962022049265136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e2cde71bd248d4a8730311019581ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graphicsContainer: {fileID: 5392175130678325390}
+  headBone: {fileID: 2797830319469680249}
+  faceVariants:
+  - {fileID: 2349470133157241469, guid: 96d3337e3f469d64b8e39f4b6c85baae, type: 3}
+  - {fileID: 2525665906750327482, guid: e6b5916203694664abebfaedd5df329a, type: 3}
 --- !u!54 &1129962022049265138
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -355,6 +373,12 @@ Transform:
 --- !u!95 &2620771142340861428 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: fc8a2fb06a02cd7498b68a608dded3d7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1129962021939272596}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2797830319469680249 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2989701457832414701, guid: fc8a2fb06a02cd7498b68a608dded3d7,
     type: 3}
   m_PrefabInstance: {fileID: 1129962021939272596}
   m_PrefabAsset: {fileID: 0}
