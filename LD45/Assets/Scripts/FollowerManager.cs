@@ -10,12 +10,17 @@ public class FollowerManager : MonoBehaviour
     public GameObject firstFollower;
     public List<GameObject> savedClones = new List<GameObject>();
 
+    public int followerCount;
+
+    public UnityEngine.Events.UnityEvent OnNoMoreFollowers;
+
     private void OnEnable()
     {
         if (!Instance)
         {
             Instance = this;
             SaveClones(SceneLoader.Instance?.savedObjects);
+            followerCount += savedClones.Count;
         }
     }
 
@@ -61,6 +66,13 @@ public class FollowerManager : MonoBehaviour
             GameObject clone = Instantiate(go);
             clone.SetActive(true);
         }
+    }
+
+    public void ReduceFollowers()
+    {
+        followerCount--;
+        if (followerCount == 0)
+            OnNoMoreFollowers.Invoke();
     }
 
 }

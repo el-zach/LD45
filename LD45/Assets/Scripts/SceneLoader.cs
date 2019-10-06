@@ -48,6 +48,7 @@ public class SceneLoader : MonoBehaviour
         {
             go.transform.SetParent(null, true);
             go.transform.position = go.transform.position + spawnLocation - exitPos;
+            //go.GetComponent<CanHold>()?.Init();
         }
     }
 

@@ -13,6 +13,22 @@ public class CanHold : MonoBehaviour
     public UnityEvent OnPickUp;
 
     Vector3 lastLegalPosition;
+
+    private void Start()
+    {
+        Init();
+    }
+
+    public void Init()
+    {
+        FollowerManager.Instance.followerCount++;
+    }
+
+    private void OnDestroy()
+    {
+        FollowerManager.Instance.ReduceFollowers();
+    }
+
     private void Update()
     {
         if (isHolding)
