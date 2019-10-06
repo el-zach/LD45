@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     [Header("Setup")]
     public Rigidbody rigid;
     [Header("Stats")]
+    public bool canNotFall = false;
     public float speed = 1f;
     public bool rotateTowards = true;
     public float rotationSpeed = 1f;
@@ -38,7 +39,13 @@ public class Movement : MonoBehaviour
     Vector3 DirectModel()
     {
         Vector3 mov = Vector3.forward * input.y + Vector3.right * input.x;
-        rigid.MovePosition(rigid.position + mov * speed * Time.deltaTime);
+        Vector3 pos = rigid.position + mov * speed * Time.deltaTime;
+        if (canNotFall)
+        {
+            if (!Physics.Raycast(pos + Vector3.up * 0.1f, Vector3.down))
+                return mov;
+        }
+        rigid.MovePosition(pos);
         return mov;
     }
 
