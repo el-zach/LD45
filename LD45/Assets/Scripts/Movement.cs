@@ -26,6 +26,7 @@ public class Movement : MonoBehaviour
     {
         Vector3 mov = DirectModel();
         if (rotateTowards) ApplyRotation(mov);
+        ClearInput();
     }
 
     Vector3 DirectModel()
@@ -53,6 +54,11 @@ public class Movement : MonoBehaviour
     void ApplyRotation(Vector3 dir)
     {
         if (dir.sqrMagnitude != 0f) rigid.MoveRotation(Quaternion.Lerp(rigid.rotation, Quaternion.LookRotation(dir, Vector3.up), rotationSpeed*Time.deltaTime));
+    }
+
+    void ClearInput()
+    {
+        input = Vector2.zero;
     }
 
 }
