@@ -4202,6 +4202,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Follower
       objectReference: {fileID: 0}
+    - target: {fileID: 1129962022049265136, guid: a0df9a9ba0d437349861a2eceb626bd5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1129962022049265137, guid: a0df9a9ba0d437349861a2eceb626bd5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4418,6 +4423,11 @@ PrefabInstance:
     - target: {fileID: 8113340622542251806, guid: 6465463c7dd57a94c88bdcf3c9f5cfe7,
         type: 3}
       propertyPath: nextSceneIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8113340622542251801, guid: 6465463c7dd57a94c88bdcf3c9f5cfe7,
+        type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5906964261941278876, guid: 6465463c7dd57a94c88bdcf3c9f5cfe7,

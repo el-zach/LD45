@@ -17,7 +17,7 @@ public class SceneLoader : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    GameObject[] savedObjects;
+    public GameObject[] savedObjects;
     Vector3 exitPos;
     Vector3 entryPos;
 
@@ -56,6 +56,16 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(index);
         SceneLoaded();
         UnpackGameObjects(entryPos);
+        //FollowerManager.Instance.SaveClones(savedObjects);
+    }
+
+    [ContextMenu("Restart")]
+    public void Restart()
+    {
+        TransportGameObjects(FollowerManager.Instance.savedClones.ToArray(),entryPos);
+        LoadScene(SceneManager.GetActiveScene().buildIndex);
+        foreach (var clone in savedObjects)
+            clone.SetActive(true);
     }
 
 

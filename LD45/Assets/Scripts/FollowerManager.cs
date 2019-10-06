@@ -7,11 +7,15 @@ public class FollowerManager : MonoBehaviour
     public static FollowerManager Instance;
     public static List<Attraction> allLights = new List<Attraction>();
 
-    private void Awake()
+    public GameObject firstFollower;
+    public List<GameObject> savedClones = new List<GameObject>();
+
+    private void OnEnable()
     {
         if (!Instance)
         {
             Instance = this;
+            SaveClones(SceneLoader.Instance?.savedObjects);
         }
     }
 
@@ -21,6 +25,7 @@ public class FollowerManager : MonoBehaviour
     void Start()
     {
         allLights.Clear();
+        if(firstFollower) SaveClones(new GameObject[]{firstFollower });
         //Attraction[] allLightsAtStart = FindObjectsOfType<Attraction>();
         //foreach (Attraction light in allLightsAtStart)
         //    allLights.Add(light);
@@ -36,4 +41,26 @@ public class FollowerManager : MonoBehaviour
     {
         
     }
+
+    public void SaveClones(GameObject[] toSave)
+    {
+        if (toSave==null || toSave.Length<1)
+            return;
+        foreach(var go in toSave)
+        {
+            GameObject clone = Instantiate(go);
+            savedClones.Add(clone);
+            clone.SetActive(false);
+        }
+    }
+
+    public void SpawnClones()
+    {
+        foreach (var go in savedClones)
+        {
+            GameObject clone = Instantiate(go);
+            clone.SetActive(true);
+        }
+    }
+
 }

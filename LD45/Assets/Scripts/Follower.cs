@@ -21,6 +21,7 @@ public class Follower : MonoBehaviour
     public float stoppingDistance = 0.3f;
     public float maxDistance = 10f;
 
+    public AudioClip deathClip;
     public UnityEvent OnDeath;
 
     // Start is called before the first frame update
@@ -88,6 +89,7 @@ public class Follower : MonoBehaviour
     public void Death()
     {
         Debug.Log(gameObject.name +" died.",gameObject);
+        FollowerManager.Instance.GetComponent<AudioSource>().PlayOneShot(deathClip);
         OnDeath.Invoke();
         Destroy(gameObject);
     }

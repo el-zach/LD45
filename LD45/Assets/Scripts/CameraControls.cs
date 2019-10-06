@@ -6,6 +6,7 @@ public class CameraControls : MonoBehaviour
 {
     [Header("Setup")]
     public Transform controlledTarget;
+    public Vector3 startPosition;
     public Cinemachine.CinemachineVirtualCamera virtualCam;
     Vector3 startZoomOffset;
 
@@ -26,6 +27,7 @@ public class CameraControls : MonoBehaviour
     void Start()
     {
         startZoomOffset = virtualCam.GetCinemachineComponent<Cinemachine.CinemachineTransposer>().m_FollowOffset;
+        startPosition = controlledTarget.position;
     }
 
     // Update is called once per frame
@@ -100,6 +102,11 @@ public class CameraControls : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireCube(bounds.center, bounds.size);
+    }
+
+    public void Restart()
+    {
+        controlledTarget.position = startPosition;
     }
 
 }

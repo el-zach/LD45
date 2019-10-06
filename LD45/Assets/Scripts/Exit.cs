@@ -12,6 +12,10 @@ public class Exit : MonoBehaviour
     [Header("Stats")]
     public string activatedText;
     public string readyToLeaveText;
+    public int followersToBeReady = 1;
+    public int itemsToBeReady = 1;
+    public int currentItemCount = 0;
+    public int currentFollowers = 0;
 
     public int nextSceneIndex = 0;
 
@@ -24,20 +28,45 @@ public class Exit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.attachedRigidbody?.GetComponent<CanHold>()?.isHolding)
+        CanHold script = other.attachedRigidbody?.GetComponent<CanHold>();
+        if (script)
         {
-            ChangeTextToReady();
-            OnReadyToLeave.Invoke();
+            currentFollowers++;
+            if(script.isHolding)
+                currentItemCount++;
+            if (CheckIfReady())
+            {
+                ChangeTextToReady();
+                OnReadyToLeave.Invoke();
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.attachedRigidbody?.GetComponent<CanHold>()?.isHolding)
+        CanHold script = other.attachedRigidbody?.GetComponent<CanHold>();
+        if (script)
         {
-            ChangeTextToActivated();
-            OnNotReadyAnymore.Invoke();
+            currentFollowers--;
+            if (script.isHolding)
+                currentItemCount--;
+            if (!CheckIfReady())
+            {
+                ChangeTextToActivated();
+                OnNotReadyAnymore.Invoke();
+            }
         }
+    }
+
+    bool CheckIfReady()
+    {
+        if(currentFollowers >= followersToBeReady)
+            if (currentItemCount >= itemsToBeReady)
+            {
+                return true;
+            }
+
+        return false;
     }
 
     void ChangeTextToReady()

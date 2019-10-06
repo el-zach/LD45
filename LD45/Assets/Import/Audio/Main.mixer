@@ -28,6 +28,39 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-8064896189803369225
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 2e76636b1088f864195432a86e78bc64
+  m_EffectName: Attenuation
+  m_MixLevel: 909408edb71d1cb4483f6194ec74e076
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &-4529687918729620127
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Noise
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 7bac3bbb13df73548acb6f5b46d2bdfc
+  m_Children: []
+  m_Volume: 9f842e3a7c4cd144e982e1d35519299c
+  m_Pitch: ec36a18b6a5593441bf770eec8657ee9
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -8064896189803369225}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!243 &-755424198559272022
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -69,6 +102,7 @@ AudioMixerController:
     - 071c76f46673f734395adedf96bb9fb6
     - 89890bd4d17c3ba458c91983108d8c8f
     - 29c0090e2c1abd94586d2ec30ec21fd8
+    - 7bac3bbb13df73548acb6f5b46d2bdfc
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -85,6 +119,7 @@ AudioMixerGroupController:
   - {fileID: 4931720432686228103}
   - {fileID: 3143030546667745548}
   - {fileID: -755424198559272022}
+  - {fileID: -4529687918729620127}
   m_Volume: 5fa5e24d024db0a49b254064acf2a28a
   m_Pitch: 5c0bdd1f0fa818e48a4bbf19bc80f348
   m_Send: 00000000000000000000000000000000
@@ -159,6 +194,7 @@ AudioMixerSnapshotController:
     a75752585d1f3234989eef520a572f5d: 0
     b6c069c8a526d634eb35a0a1e6a23f2b: 0.51
     1af236f8683629e48a991bbeea5219af: 112
+    9f842e3a7c4cd144e982e1d35519299c: -22.003616
     34b2f94b75d26a34ebbb51e58b8d270c: 22
     38990f4bd500ed84189f9d03fa9edf39: 0
     a00b160c4e4fe1f4fbc91564229bfed0: 517

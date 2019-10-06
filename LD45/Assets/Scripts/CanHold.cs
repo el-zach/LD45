@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CanHold : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class CanHold : MonoBehaviour
     Vector3 itemOriginalPosition;
     Quaternion itemOriginalRotation;
 
+    public UnityEvent OnPickUp;
 
     Vector3 lastLegalPosition;
     private void Update()
@@ -33,6 +35,7 @@ public class CanHold : MonoBehaviour
         item.transform.SetParent(handBone, true);
         item.transform.localPosition = Vector3.zero;
         item.transform.localRotation = Quaternion.identity;
+        OnPickUp.Invoke();
         //item.transform.localScale = Vector3.one;
     }
 
