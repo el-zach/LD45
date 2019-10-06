@@ -13,6 +13,8 @@ public class Follower : MonoBehaviour
         public float score;
     }
 
+    public static float killHeigth = -10f;
+
     public bool debug = false;
     Movement move;
     public float slowDownDistance = 3f;
@@ -30,6 +32,14 @@ public class Follower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y < killHeigth)
+        {
+            Death();
+            return;
+        }
+
+
+
         float topScore = FollowerManager.Instance.minScore;
         LightRating topLight = null;
         foreach(Attraction attraction in FollowerManager.allLights)

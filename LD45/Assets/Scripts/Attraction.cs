@@ -15,11 +15,14 @@ public class Attraction : MonoBehaviour
             range = syncTarget.range;
             power = syncTarget.intensity;
         }
+        
     }
 
     private void Update()
     {
-        if(syncTarget)
+        if (!FollowerManager.allLights.Contains(this))
+            FollowerManager.Instance.AddAttraction(this);
+        if (syncTarget)
         {
             range = syncTarget.range;
             power = syncTarget.intensity;

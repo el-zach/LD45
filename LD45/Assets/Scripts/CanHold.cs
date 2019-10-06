@@ -49,6 +49,9 @@ public class CanHold : MonoBehaviour
         col.radius = Collectable.TriggerRadius;
         col.isTrigger = true;
 
+        var collectable = holder.AddComponent<Collectable>();
+        collectable.itemGraphic = isHolding.transform;
+
         isHolding.transform.SetParent(holder.transform);
         isHolding.transform.localPosition = itemOriginalPosition;
         isHolding.transform.localRotation = itemOriginalRotation;

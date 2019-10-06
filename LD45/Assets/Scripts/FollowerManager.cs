@@ -9,7 +9,10 @@ public class FollowerManager : MonoBehaviour
 
     private void Awake()
     {
-        if (!Instance) Instance = this;
+        if (!Instance)
+        {
+            Instance = this;
+        }
     }
 
     public float minScore = 30f;
@@ -18,9 +21,14 @@ public class FollowerManager : MonoBehaviour
     void Start()
     {
         allLights.Clear();
-        Attraction[] allLightsAtStart = FindObjectsOfType<Attraction>();
-        foreach (Attraction light in allLightsAtStart)
-            allLights.Add(light);
+        //Attraction[] allLightsAtStart = FindObjectsOfType<Attraction>();
+        //foreach (Attraction light in allLightsAtStart)
+        //    allLights.Add(light);
+    }
+
+    public void AddAttraction(Attraction attraction)
+    {
+        allLights.Add(attraction);
     }
 
     // Update is called once per frame
