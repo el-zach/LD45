@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
     [Header("Setup")]
     public Rigidbody rigid;
     [Header("Stats")]
+    public bool rotateTowards = true;
     public float acceleration=1f;
     public float velocityDamping = 0.95f;
     //public float gravity = 9.81f;
@@ -25,6 +26,7 @@ public class Movement : MonoBehaviour
         acc = new Vector3(input.x * acceleration * Time.deltaTime, 0f, input.y * acceleration * Time.deltaTime);
         vel += acc;
         //vel += Vector3.down * gravity*Time.deltaTime;
+        if (rotateTowards && vel.sqrMagnitude != 0f) rigid.MoveRotation(Quaternion.LookRotation(vel,Vector3.up));
         rigid.MovePosition(rigid.position + new Vector3(vel.x, vel.y, vel.z));
 
         vel *= velocityDamping;
