@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigid: {fileID: 1129962022049265138}
-  speed: 3
+  speed: 1.8
   rotateTowards: 1
   rotationSpeed: 1
   OnInput:

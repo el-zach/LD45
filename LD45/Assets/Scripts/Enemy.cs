@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
     [Header("Stats")]
     public float damageRange = 3f;
     public float damageForward = 3f;
+    public float attackCooldown = 1f;
+    float attackTimer = 0f;
 
     [Header("Setup")]
     public Animator animator;
@@ -19,10 +21,19 @@ public class Enemy : MonoBehaviour
         move = GetComponent<Movement>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        if (other.attachedRigidbody && other.attachedRigidbody.CompareTag("Follower"))
-            Attack(other.attachedRigidbody.transform);
+        if (attackTimer <= attackCooldown)
+            attackTimer += Time.deltaTime;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (attackTimer >= attackCooldown)
+        {
+            if (other.attachedRigidbody && other.attachedRigidbody.CompareTag("Follower"))
+                Attack(other.attachedRigidbody.transform);
+        }
     }
 
     void Attack(Transform target)
@@ -30,6 +41,7 @@ public class Enemy : MonoBehaviour
         follow.enabled = false;
         move.SetInput((target.position-transform.position).normalized);
         animator.SetTrigger("Attack");
+        attackTimer = 0f;
     }
 
     public void KillSurrounding()
