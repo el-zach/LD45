@@ -226,7 +226,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlledTarget: {fileID: 5906964261807052805}
+  virtualCam: {fileID: 5906964261829139678}
   speed: 6
+  zoomStep: 0.2
+  zoomSpeed: 6
+  invertZoom: 1
+  currentZoom: 1
   bounds:
     m_Center: {x: 2.7, y: 0, z: 27}
     m_Extent: {x: 12, y: 5, z: 30}

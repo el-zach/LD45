@@ -4,16 +4,26 @@ using UnityEngine;
 
 public class CameraControls : MonoBehaviour
 {
-
+    [Header("Setup")]
     public Transform controlledTarget;
+    public Cinemachine.CinemachineVirtualCamera virtualCam;
+    Vector3 startZoomOffset;
+
+    [Header("Stats")]
     public float speed = 1f;
+    public float zoomStep = 0.2f;
+    public float zoomSpeed = 2f;
+    public bool invertZoom = true;
+    [Range(0.5f,2f)]
+    public float currentZoom = 1f;
+    float targetZoom = 1f;
 
     public Bounds bounds;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        startZoomOffset = virtualCam.GetCinemachineComponent<Cinemachine.CinemachineTransposer>().m_FollowOffset;
     }
 
     // Update is called once per frame
@@ -28,6 +38,12 @@ public class CameraControls : MonoBehaviour
         mov += forward * GetMouseBorderY(mousePos) * speed * Time.deltaTime;
         if(bounds.Contains(controlledTarget.position+mov))
             controlledTarget.Translate(mov);
+
+        if (Mathf.Abs(Input.mouseScrollDelta.y) > 0f)
+        {
+            ChangeZoom(Input.mouseScrollDelta.y * zoomStep * (invertZoom ? -1f : 1f));
+        }
+        if (!Mathf.Approximately(currentZoom, targetZoom)) DoZoom();
     }
 
     float GetMouseBorderX(Vector3 mousePos)
@@ -51,6 +67,18 @@ public class CameraControls : MonoBehaviour
             return 1f;
         }
         else return 0f;
+    }
+
+
+    void ChangeZoom(float zoomInput)
+    {
+        targetZoom = Mathf.Clamp(currentZoom + zoomInput, 0.5f, 2f);
+    }
+
+    void DoZoom()
+    {
+        currentZoom = Mathf.Lerp(currentZoom, targetZoom, Time.deltaTime*zoomSpeed);
+        virtualCam.GetCinemachineComponent<Cinemachine.CinemachineTransposer>().m_FollowOffset = startZoomOffset * currentZoom;
     }
 
     private void OnDrawGizmosSelected()
