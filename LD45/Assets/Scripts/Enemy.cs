@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
         foreach(var hit in hits)
         {
             if (hit.attachedRigidbody && hit.attachedRigidbody.CompareTag("Follower"))
-                Destroy(hit.attachedRigidbody.gameObject);
+                hit.attachedRigidbody.GetComponent<Follower>().Death();
         }
         follow.enabled = true;
     }

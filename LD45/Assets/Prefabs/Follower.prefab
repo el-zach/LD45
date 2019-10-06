@@ -131,6 +131,20 @@ MonoBehaviour:
   slowDownDistance: 3
   stoppingDistance: 0.3
   maxDistance: 10
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1803797247954350955}
+        m_MethodName: Detach
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1129962022049265139
 MonoBehaviour:
   m_ObjectHideFlags: 0

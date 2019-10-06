@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Follower : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class Follower : MonoBehaviour
     public float slowDownDistance = 3f;
     public float stoppingDistance = 0.3f;
     public float maxDistance = 10f;
+
+    public UnityEvent OnDeath;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +73,13 @@ public class Follower : MonoBehaviour
         Vector2 dir = new Vector2(light.worldDirection.x, light.worldDirection.z).normalized;
         dir *= Mathf.Clamp01(light.distance / slowDownDistance - stoppingDistance);
         move.SetInput(dir);
+    }
+
+    public void Death()
+    {
+        Debug.Log(gameObject.name +" died.",gameObject);
+        OnDeath.Invoke();
+        Destroy(gameObject);
     }
 
     //Vector2 TargetDirection(Vector3 _targetPos)
