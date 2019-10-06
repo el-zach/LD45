@@ -68,6 +68,11 @@ public class Movement : MonoBehaviour
         OnInput.Invoke(_in);
     }
 
+    public Vector2 GetInput()
+    {
+        return input;
+    }
+
     void ClearInput()
     {
         //input = Vector2.zero;
