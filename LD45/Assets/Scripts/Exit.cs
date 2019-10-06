@@ -12,7 +12,7 @@ public class Exit : MonoBehaviour
     public string activatedText;
     public string readyToLeaveText;
 
-    public UnityEvent OnReadyToLeave, OnNotReadyAnymore;
+    public UnityEvent OnReadyToLeave= new UnityEvent(), OnNotReadyAnymore = new UnityEvent();
 
     private void OnTriggerEnter(Collider other)
     {

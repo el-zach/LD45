@@ -14,7 +14,7 @@ public class Collectable : MonoBehaviour
     public Transform itemGraphic;
     public float rotationSpeed = 1f;
 
-    public UnityEvent OnCollected;
+    public UnityEvent OnCollected = new UnityEvent();
 
     private void Update()
     {

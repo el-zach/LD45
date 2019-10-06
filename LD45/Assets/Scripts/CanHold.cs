@@ -30,9 +30,10 @@ public class CanHold : MonoBehaviour
         isHolding = item;
         itemOriginalPosition = item.transform.localPosition;
         itemOriginalRotation = item.transform.localRotation;
-        item.transform.SetParent(handBone, false);
+        item.transform.SetParent(handBone, true);
         item.transform.localPosition = Vector3.zero;
         item.transform.localRotation = Quaternion.identity;
+        //item.transform.localScale = Vector3.one;
     }
 
     public void Detach()
@@ -52,9 +53,10 @@ public class CanHold : MonoBehaviour
         var collectable = holder.AddComponent<Collectable>();
         collectable.itemGraphic = isHolding.transform;
 
-        isHolding.transform.SetParent(holder.transform);
+        isHolding.transform.SetParent(holder.transform,true);
         isHolding.transform.localPosition = itemOriginalPosition;
         isHolding.transform.localRotation = itemOriginalRotation;
+        isHolding.transform.localScale = Vector3.one;
 
         isHolding = null;
 
