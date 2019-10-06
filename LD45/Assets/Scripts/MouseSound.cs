@@ -5,6 +5,7 @@ using UnityEngine;
 public class MouseSound : MonoBehaviour
 {
     public AudioClip downClip;
+    public float maxVolume = 1f;
     public float mouseVelScale = 0.01f;
     public float lerpSpeed = 1f;
 
@@ -30,7 +31,7 @@ public class MouseSound : MonoBehaviour
         mouseVel = (Input.mousePosition - lastMousePosition).magnitude / Time.deltaTime * mouseVelScale;
         lastMousePosition = Input.mousePosition;
 
-        vol = Mathf.MoveTowards(vol, (Input.GetMouseButton(0) ? 0.1f + Mathf.Clamp01(mouseVel) * 0.9f: 0), Time.deltaTime * lerpSpeed);
+        vol = Mathf.MoveTowards(vol, (Input.GetMouseButton(0) ? maxVolume*0.1f + Mathf.Clamp01(mouseVel) * maxVolume*0.9f: 0), Time.deltaTime * lerpSpeed);
         src.volume = vol;
     }
 }
