@@ -8,6 +8,8 @@ public class CameraControls : MonoBehaviour
     public Transform controlledTarget;
     public float speed = 1f;
 
+    public Bounds bounds;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,8 @@ public class CameraControls : MonoBehaviour
         forward.y = 0f;
         forward = forward.normalized;
         mov += forward * GetMouseBorderY(mousePos) * speed * Time.deltaTime;
-        controlledTarget.Translate(mov);
+        if(bounds.Contains(controlledTarget.position+mov))
+            controlledTarget.Translate(mov);
     }
 
     float GetMouseBorderX(Vector3 mousePos)
@@ -50,5 +53,9 @@ public class CameraControls : MonoBehaviour
         else return 0f;
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireCube(bounds.center, bounds.size);
+    }
 
 }
